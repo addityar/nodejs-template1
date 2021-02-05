@@ -10,9 +10,8 @@ node {
   stages {
     stage('clone repo') {
       steps {
-	sshCommand remote: remote, command: git clone https://github.com/addityar/nodejs-template1.git
+	sshCommand remote: remote, command: 'git clone https://github.com/addityar/nodejs-template1.git'
 			  
-        }
         }
     }
 
@@ -28,5 +27,6 @@ node {
       }
     }
   
+  }
   }
 }
