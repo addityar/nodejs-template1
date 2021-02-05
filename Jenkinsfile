@@ -9,12 +9,7 @@ pipeline {
   stages {
     stage('clone repo') {
       steps {
-        #git 'https://github.com/addityar/nodejs-template1.git'
          sshCommand remote: remote, command: 'git clone https://github.com/addityar/nodejs-template1.git'
-         #sh 'git reset'
-         #sh 'git clean -f'
-         #sh "git checkout master"
-         #sh "git pull origin master"
       }
     }
 
