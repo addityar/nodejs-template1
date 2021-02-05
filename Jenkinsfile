@@ -9,7 +9,7 @@ pipeline {
 			echo '*** Executing remote commands ***'
 	 		sh '''#!/bin/bash
 				date
-				ssh -i /var/lib/jenkins/.ssh/hm-master.key ubuntu@dev-swarm-01.honest.mining >> ENDSSH
+				ssh -i /var/lib/jenkins/.ssh/hm-master.key ubuntu@dev-swarm1-01.honest.mining >> ENDSSH
 			  git clone https://github.com/addityar/nodejs-template1.git
 			  
         ENDSSH
