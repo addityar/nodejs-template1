@@ -1,19 +1,17 @@
 pipeline {
+node {
+  def remote = [:]
+  remote.name = 'dev-admin-01'
+  remote.host = 'dev-admin-01.honest.mining'
+  remote.user = 'ubuntu'
+  remote.identityFile = '/var/lib/jenkins/.ssh/hm-master.key'
+  remote.allowAnyHosts = true
   agent any
   stages {
     stage('clone repo') {
       steps {
-        script {
-			echo 'Using remote command over ssh'
-			sh 'echo "Today is:" date'
-			echo '*** Executing remote commands ***'
-	 		sh '''#!/bin/bash
-				date
-				ssh -i /var/lib/jenkins/.ssh/hm-master.key ubuntu@dev-swarm1-01.honest.mining >> ENDSSH
-			  git clone https://github.com/addityar/nodejs-template1.git
+	sshCommand remote: remote, command: git clone https://github.com/addityar/nodejs-template1.git
 			  
-        ENDSSH
-'''
         }
         }
     }
@@ -29,6 +27,6 @@ pipeline {
         sshCommand remote: remote, command: 'docker run -p 8100:8000 -d nodejs-template:latest'
       }
     }
-
+  
   }
 }
