@@ -1,16 +1,21 @@
 pipeline {
   agent any
-  def remote = [:]
-  remote.name = 'dev-swarm1-01'
-  remote.host = 'dev-swarm1-01.honest.mining'
-  remote.user = 'ubuntu'
-  remote.identityFile = '/var/lib/jenkins/.ssh/hm-master.key'
-  remote.allowAnyHosts = true
   stages {
     stage('clone repo') {
       steps {
-         sshCommand remote: remote, command: 'git clone https://github.com/addityar/nodejs-template1.git'
-      }
+        script {
+			echo 'Using remote command over ssh'
+			sh 'echo "Today is:" date'
+			echo '*** Executing remote commands ***'
+	 		sh '''#!/bin/bash
+				date
+				ssh -i /var/lib/jenkins/.ssh/hm-master.key ubuntu@dev-swarm-01.honest.mining >> ENDSSH
+			  git clone https://github.com/addityar/nodejs-template1.git
+			  
+        ENDSSH
+'''
+        }
+        }
     }
 
     stage('Build Image') {
