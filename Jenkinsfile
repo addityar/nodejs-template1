@@ -1,8 +1,8 @@
 pipeline {
 node {
   def remote = [:]
-  remote.name = 'dev-admin-01'
-  remote.host = 'dev-admin-01.honest.mining'
+  remote.name = 'dev-swarm1-01'
+  remote.host = 'dev-swarm1-01.honest.mining'
   remote.user = 'ubuntu'
   remote.identityFile = '/var/lib/jenkins/.ssh/hm-master.key'
   remote.allowAnyHosts = true
