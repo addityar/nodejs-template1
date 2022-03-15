@@ -12,3 +12,4 @@ RUN npm install pm2 -g
 EXPOSE 8000
 
 CMD [ "node", "app.js" ]
+HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
